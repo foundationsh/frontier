@@ -9,13 +9,15 @@ import {
 	faRocket,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import FoundationClient from '@/lib/api/client';
+import { useAuth } from '@/lib/auth';
 import classes from '@/lib/classes';
 import { useScreenSize } from '@/lib/layout';
 
-import PolygonIcon from '@/assets/img/Polygon.svg';
+import { CheckAuthenticationPayload } from '@/types/CheckAuthenticationPayload';
 
 import Stylesheet from './DashboardNavbar.module.sass';
 
@@ -31,6 +33,10 @@ type DashboardNavbarProps = {
 const DashboardNavbar: React.FC<DashboardNavbarProps> = (props) => {
 	const { children, className, position } = props;
 
+	const { token, logout } = useAuth();
+
+	const [profilePicture, setProfilePicture] = useState<string | undefined>();
+
 	const navbar = useRef<any>();
 	const { width } = useScreenSize();
 	const [isNavbarOverflowing, setNavbarOverflowing] =
@@ -38,6 +44,26 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = (props) => {
 
 	const buttonMode = position == 'side' ? 'list' : 'block';
 	const logoSize = position == 'side' ? 25 : 35;
+
+	useEffect(() => {
+		const fetchProfilePicture = async () => {
+			if (!token) return;
+
+			const response = await FoundationClient.CheckAuthentication(token);
+			if (!response.ok) {
+				logout();
+			}
+
+			const payload: CheckAuthenticationPayload = await response.json();
+			if (!payload.successful) {
+				logout();
+			}
+
+			setProfilePicture(payload.user.profilePictureUrl);
+		};
+
+		fetchProfilePicture();
+	});
 
 	useLayoutEffect(() => {
 		if (position == 'bottom') {
@@ -61,7 +87,7 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = (props) => {
 					className='z-10 flex aspect-square h-full cursor-none items-center justify-center text-[#ffffff22] transition-colors duration-100 hover:text-[#ffffff55]'
 				>
 					<img
-						src={PolygonIcon}
+						src={profilePicture}
 						height={logoSize}
 						width={logoSize}
 						className='rounded-full'
