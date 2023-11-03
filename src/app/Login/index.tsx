@@ -13,6 +13,7 @@ const Component = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
+	const [failed, setFailed] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const { isLoggedIn, login } = useAuth();
@@ -26,10 +27,13 @@ const Component = () => {
 	}, []);
 
 	const onSubmit = async () => {
-		if (username === '' || password === '') return;
+		if (username.length == 0 || password.length == 0) {
+			setFailed(true);
+			return;
+		}
 
 		setIsLoading(true);
-		await login(username, password);
+		setFailed(await login(username, password));
 		setIsLoading(false);
 	};
 
@@ -51,12 +55,7 @@ const Component = () => {
 						placeholder='Username'
 						value={username}
 						style={{
-							borderColor:
-								isLoggedIn === false
-									? 'red'
-									: isLoggedIn !== null
-									? '#333'
-									: null,
+							borderColor: failed ? 'red' : '#333',
 						}}
 						onChange={(e: any) => setUsername(e.target.value)}
 					/>
@@ -66,12 +65,7 @@ const Component = () => {
 						placeholder='Password'
 						value={password}
 						style={{
-							borderColor:
-								isLoggedIn === false
-									? 'red'
-									: isLoggedIn !== null
-									? '#333'
-									: null,
+							borderColor: failed ? 'red' : '#333',
 						}}
 						onChange={(e: any) => setPassword(e.target.value)}
 					/>

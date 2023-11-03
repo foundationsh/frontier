@@ -1,5 +1,7 @@
+import Page from '@/components/Page';
+
 const Component = () => {
-	return <></>;
+	return <Page></Page>;
 };
 
 export default Component;

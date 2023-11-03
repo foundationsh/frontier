@@ -139,9 +139,6 @@ const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
 					password
 				);
 
-				console.log(response);
-				console.log(response.text());
-
 				if (!response.ok) {
 					alert(`Failed to login. Try again.`);
 					console.log(response);

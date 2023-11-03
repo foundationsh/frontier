@@ -7,20 +7,13 @@ const getUrl = (...paths: string[]) => {
 };
 
 export const Endpoints = {
-	GraphQL: {
-		Gateway: getUrl('gql'),
-
-		Identity: getUrl('identity', 'gql'),
-		UPx: getUrl('identity', 'gql'),
-	},
-
 	REST: {
 		Identity: getUrl('identity'),
 		UPx: getUrl('upx'),
-		RefillStationResumes: getUrl('upx', 'refillstation', 'resumes'),
+		RefillStationResumes: getUrl('upx/refillstation/resumes'),
 
-		Auth: getUrl('identity', 'auth'),
-		Avatar: getUrl('identity', 'me', 'avatar'),
+		Auth: getUrl('identity/auth'),
+		Avatar: getUrl('identity/me/avatar'),
 	},
 };
 
