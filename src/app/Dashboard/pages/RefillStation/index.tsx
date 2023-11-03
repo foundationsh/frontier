@@ -53,7 +53,7 @@ type TickData = {
 };
 
 const Component: React.FC = () => {
-	const [data, setData] = useState<any>(null);
+	const [resumes, setResumes] = useState<any>(null);
 
 	const [chartData, setChartData] = useState<ChartData>({
 		uses: [],
@@ -85,7 +85,7 @@ const Component: React.FC = () => {
 			return;
 		}
 
-		setData(data);
+		setResumes(data);
 	};
 
 	useEffect(() => {
@@ -93,9 +93,7 @@ const Component: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		if (!data) return;
-
-		const resumes = data.resumes;
+		if (!resumes) return;
 
 		console.log('Fetched data from Foundation:');
 		console.log(resumes);
@@ -193,9 +191,9 @@ const Component: React.FC = () => {
 
 		setChartData(chartData);
 		setMaxTicks(maxTicks);
-	}, [data]);
+	}, [resumes]);
 
-	if (!data) return <Loading />;
+	if (!resumes) return <Loading />;
 
 	return (
 		<Page className='h-full flex-col'>
