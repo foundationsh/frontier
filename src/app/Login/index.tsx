@@ -9,6 +9,8 @@ import Page from '@components/Page';
 import { useAuth } from '@lib/auth';
 import { useLayout } from '@lib/layout';
 
+import FoundationIcon from '@assets/img/FoundationIcon.svg';
+
 const Component = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -46,9 +48,11 @@ const Component = () => {
 					onSubmit={onSubmit}
 					className='flex h-[min(50rem,80%)] w-[clamp(30rem,75%,50rem)] flex-col items-center justify-center rounded-lg md:w-[min(30rem,75%)] md:border-ring md:bg-transparent'
 				>
-					<h1 className='text-gradient m-0 mb-8 font-display text-6xl font-extrabold'>
-						Welcome!
-					</h1>
+					<img
+						src={FoundationIcon}
+						alt='Foundation Icon'
+						className='mb-10 aspect-square w-[35%] invert'
+					/>
 					<Input
 						className='border-border mb-6 w-[75%] border font-title shadow-sm placeholder:text-[#ffffff22]'
 						type='text'

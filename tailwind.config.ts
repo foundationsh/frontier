@@ -13,11 +13,11 @@ module.exports = {
 		extend: {
 			colors: {
 				accents: {
-					0: '#060607',
-					1: '#121213',
-					2: '#1e1e1f',
-					3: '#232324',
-					4: '#373738',
+					0: '#060606',
+					1: '#121212',
+					2: '#1e1e1e',
+					3: '#232323',
+					4: '#373737',
 				},
 				borders: {
 					0: '#1c1c1d',
@@ -50,7 +50,7 @@ module.exports = {
 			borderRadius: {},
 			fontSize: {},
 			fontFamily: {
-				display: 'Space Grotesk',
+				display: 'Space Mono',
 				mono: 'Space Mono',
 				title: 'Inter',
 				body: 'Space Mono',
