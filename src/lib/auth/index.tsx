@@ -17,14 +17,14 @@ export type AuthState = {
 	isLoggedIn: boolean;
 	isLoading: boolean;
 };
-export type AuthStateAction = { type: AuthStateActionType; [key: string]: any };
-export type AuthStateActionType =
-	| 'LOGIN'
-	| 'LOGOUT'
-	| 'SET_TOKEN'
-	| 'RESTORE_TOKEN'
-	| 'SET_LOGGED_IN'
-	| 'SET_LOADING';
+
+export type AuthStateAction =
+	| { type: 'LOGIN'; token: string }
+	| { type: 'LOGOUT' }
+	| { type: 'RESTORE_TOKEN'; token: string }
+	| { type: 'SET_LOADING'; isLoading: boolean }
+	| { type: 'SET_LOGGED_IN'; isLoggedIn: boolean }
+	| { type: 'SET_TOKEN'; token: string };
 
 type AuthContextData = {
 	login: (username: string, password: string) => Promise<boolean>;

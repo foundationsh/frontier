@@ -50,7 +50,7 @@ module.exports = {
 			borderRadius: {},
 			fontSize: {},
 			fontFamily: {
-				display: 'Space Mono',
+				display: 'Space Grotesk',
 				mono: 'Space Mono',
 				title: 'Inter',
 				body: 'Space Mono',
