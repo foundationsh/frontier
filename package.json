@@ -1,12 +1,13 @@
 {
-	"name": "portfolio",
+	"name": "frontier",
 	"private": true,
 	"version": "0.1.0",
 	"type": "module",
 	"browserslist": "> 0.5%, last 2 versions, not dead",
 	"scripts": {
-		"dev": "vite",
-		"build": "vite build -d",
+		"dev": "next",
+		"build": "next build -d",
+		"start": "next start",
 		"lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview"
 	},
